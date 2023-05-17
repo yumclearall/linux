@@ -1,0 +1,624 @@
+root  123456
+
+useradd name
+passwd name
+
+who
+whoami
+pwd			我在哪
+
+poweroff					关机
+shutdown -h now
+
+uname-a		内核信息
+
+echo 			类似sout syso，打印
+clear			清屏
+history		历史
+history -c		清除历史
+
+ll			文件（当前目录）
+ll /etc/		文件（etc下）
+ll -a			全部文件（包括隐藏）
+
+.			当前路径
+..			上一层路径
+$			一个变量
+*			通配符
+~			家目录
+/			根目录
+
+-			命令参数，单词
+--			字母，一般俩杠
+
+ps -ef			系统进程
+echo $$		查看当前进程命令
+
+ll /			二级目录
+
+
+cd			改变当前目录
+ll			当前目录下文件
+ls			
+	-		文件
+	d		文件夹
+	l		链接（快捷方式）
+type ll
+ls -l --color=auto
+
+mkdir			创建文件目录
+	mkdir aaa
+	mkdir -p a/b/c
+	mkdir -p sr{libai,dufu,baijuyi}
+	mkdir -p shiren/{libai,dufu,baijuyi}
+
+rmdir			删除空文件夹
+	rm -rf a
+	rmdir aaa
+
+cp			拷贝，左文件路径，右拷贝位置
+	cp anaconda-ks.cfg /opt
+	cp /etc/yum.conf ./
+	cp -r shiren /opt、		r,级联的迭代的去拷贝，（拷贝文件夹）
+	cp -r shiren*	 /opt/
+
+mv			剪切，移动
+	mv yum.conf /opt/
+	mv shiren* /opt/
+	mv aaa aaaaaa		改文件名字
+
+rm	删除
+	rmdir aaaaaa
+	rm anaconda-ks.cfg
+		y
+	rm -f anaconda-ks.cfg	强制删除，不用y确定
+	rm -r shiren
+	rm -rf shiren
+	rm -rf /*		删除根目录下文件夹
+
+touch				创建文件
+	touch wlspb
+stat				文件状态
+
+	stat wlspb				access改变
+		vi wlspb
+			:q
+				stat wlspb
+
+	chmod a+x jys			change改变
+		stat jys
+
+	vi jys					Modfiy三个全变
+		i	abcdefg	Esc	:wq
+			stat jys
+	
+	touch jys
+		stat jys			三个全变
+
+
+ln		创建文件的链接
+
+	vi qjjiu
+		i	tswcbyy	Esc	:wq
+			cat qjjiu
+
+	ln -s qjjiu slink		软连接
+		cat slink
+
+	ln qjjiu hlink		硬链接
+		cat hlink
+
+	rm -rf qjjiu
+		cat hlink
+
+cat			查看文件
+	cp /etc/prpfile/ ./
+		cat profile
+		tac profile		倒序
+	
+	more profile 		分页查看文件
+		空格 翻页	 b 回退	enter 下一行		q 退出
+		h 提示信息
+		
+	less profile			同more，功能更强大
+	head -10 profile		显示前10行
+	tail -3 profile		后3行
+	head -8 profile | tail -1	第8行
+
+	ping www.baidu.com >> baidu
+	tail -f baidu 			监控文件
+	tail -F baidu 		监控Inode
+
+find				搜索
+	find / -name sjys		全局搜索
+	find /etc -name a*a	etc内搜索 a开头 a结尾
+
+vi				打开文件
+	vi +8 profile 	定位到第8行
+	vi + profile		定位到最后一行
+	vi +/if profile 	定位到if	
+		n		定位到下一个
+	打开后三种模式
+		编辑模式	dd 删除1行，p复制1行	15gg,光标到15行，	G，光标到最后一行
+				3dd，删3行		w，光标到下一个单词
+				dw，删除光标后一个单词		yy，复制1行	，按p，粘贴
+				3yw，复制3个单词			u，撤销
+				.	，重复上一次产生的操作		hjkl，左下上右
+				$,行尾		^,行首	ZZ，保存并退出
+				r，替换，re，换成e，3re，换三个
+				3x， 剪切3个字符
+
+
+
+
+
+			进入输入模式
+				a，追加	i，插入	A，行尾	
+				I，行首	o，下一行	O,上一行
+				
+			进入末行模式
+				：
+			退出输入/末行模式
+				Esc
+		
+		i 输入模式	Esc退出到编辑模式
+		: 末行模式	:set nu	加行号	：set nonu，去掉行号
+			：wq，保存并提出		：w，保存		：q，退出
+			：q！，强制退出，不需要保存
+			：/if,	查找if			：s/if/else,		光标所在行第一个if换位else
+			：s/if/else/g, 	光标所在行if全变为else
+			：g/if/s//else/g	所有if变为else
+
+
+
+&		1 7  001 111 001
+&&		3 > 4 && 3 > 5
+
+
+yum install vim -y
+rm -rf .profile.swp		删除隐藏文件（之前错误操作留下的），新手
+
+
+数据传输
+win-linux
+lrzsz
+yum install lrzsz -y
+rz+回车		上传到linux
+sz profile		下载到win
+
+xftp打开拖拽
+
+linux-linux
+克隆，完全克隆，打开
+vi /etc/hostname
+dd i node01 Esc :wq
+vi /etc/sysconfig/network-stricps/ifcfg-ens33
+IPADDR=192.168.188.101	:wq
+
+systemctl restart network.service
+
+scp source target
+scp hqjj root@192.168.188.101:/opt/
+scp root@192.168.188.100:/root/baidu /opt/
+		yes	123456			拷贝文件
+mkdir -p aa/bb/cc
+scp -r aa root@192.168.188.101:/opt/		拷贝文件夹
+			
+df						分区信息
+df -h						单位不同
+du						文件大小
+du -h --max-depth=1 /etc		etc下所有文件夹大小，深度为1
+
+
+文件的压缩和解压
+
+tar.gz
+tar -zcf name source		压缩
+tar -zcf tomcat.tar.gz baidu
+tar -zxvf name			解压
+
+yum install zip unzip -y
+zip					压缩
+zip -r tomcat.zip baidu
+unzip tomcat.zip		A	解压，全部替换
+
+网络相关命令
+hostname school		临时替换主机名
+vi /etc/hostname	i,修改 :wq	永久修改
+reboot		重启虚拟机
+
+dns解析
+win->C:\Windows\System32\dirver\etc\hosts
+vi /etc/hosts			环网地址
+i，修改
+192,168.188.101 node01	Esc :wq
+ping node01
+
+
+ifconfig			查看当前网卡配置信息
+yum search ifconfig
+yum install net-tools -y
+ifconfig
+
+netstat			查看当前网络的状态信息
+netstat -anp
+netstat -r			核心路由表
+
+ping		查看与目标ip地址是否能够连通
+ping node01
+
+telnet		查看与目标ip的指定端口是否能够连通
+yum install telnet -y
+telnet node01 22
+
+curl		restful我们所有的资源在网络上中都有唯一的定位
+		那么我们可以通过这个唯一定位标识指定的资源
+curl -X GET http://www/baidu.com
+
+防火墙
+systemctl status firewalld.service		防火墙状态
+systemctl stop firewalld.service			临时停止
+systemctl disable firewalld.service		禁止开机启动
+
+systemctl start firewalld.service
+firewall-cmd --get-service
+
+firewall-cmd --zone=public --add-port=80/tcp --permanent		添加
+firewall-cmd --reload		重新载入
+firewall-cmd --zone=public --query-port=80/tcp	查看
+firewall-cmd --zone=public --remove-port=80/tcp --permanent	删除
+
+
+加密算法
+不可逆加密算法。无法算出原始数据
+
+
+免密钥,非对称加密
+ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
+
+把自己的公钥传递给对方主机
+ssh-copy-id -i ~/.ssh/id_rsa.pub root@192.168.188.101
+
+检查密钥状态
+cat ~/.ssh/id_rsa.pub
+cat ~/.ssh/authorized_keys
+
+
+互相免密钥
+ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
+ssh-copy-id -i ~/.ssh/id_rsa.pub root@192.168.188.100
+
+避免输入yes带来的干扰
+ssh node01
+
+本次
+ssh -v -o GSSAPIAuthentication=no root@192.168.188.101
+
+
+所有
+cd .ssh/	
+ll
+vi known_hosts
+	dd 	:wq
+vi /etc/ssh/ssh_config
+	末尾 + 
+	StrictHostKeyChecking no
+	UserKnownHostsFile /dev/null
+
+
+	
+
+时间 date
+修改时间
+date -s 11:11:11
+date -s 2910-11-11
+date -s '2019-11-11 11:11:11'
+
+自动同步时间
+yum install ntp -y	下载
+ntpdate cn.ntp.org.cn
+
+打开本地服务器
+service ntpd start
+多台服务器统一时间
+ntpdate 192.168.188.100
+
+
+vi /etc/ntp.conf
+
+	
+
+用户
+新增用户
+useradd lucky
+设置密码
+passwd lucky
+	boy1234
+
+ssh 192.168.188.101
+luckyboy boy1234
+
+修改用户信息	
+usermod -l luckyss luckyls	修改用户名  家目录和组名称不会被修改
+usermod -L luckyss		锁定用户名
+usermod -U luckyss		解锁用户名
+
+常用文件
+cat /etc/shadow	用户名和密码
+cat /etc/passwd	用户名 编号 组编号 家目录 命令码 目录
+
+切换用户
+su lucky
+删除用户
+userdel -r lucky
+
+
+组
+创建组
+groupadd tang
+删除组
+groupdel tang
+修改组名
+groupmod -n song tang
+查看对应组
+groups
+groups song
+修改用户的组
+usermod -g lucky song 主组
+usermod -G lucky song 附属组	各拥有一个
+
+
+权限
+r读
+-无
+x执行
+w写
+以上分别三组*3
+用户权限 组权限 其他人的权限
+rw-r--rw- libai tang
+
+useradd dufu
+passwd dufu
+	123456
+ssh 192.168.188.101
+	dufu 123456
+	touch denggao
+-rw-rw-r-- 1 ... denggao
+
+
+权限的UGO模型
+cd /opt
+touch file
+ll
+vi file
+	i	hellow moto		Esc	:wq
+su lucky	
+	vi file	没有写权限
+
+
+修改文件权限的两种策略
+改变文件的属组或属主
+chown lucky file
+
+chmod o+w file	其他文件可写操作
+
+
+
+管道与重定向
+head -8  /etc/profile | tail -1	|把前面查询到的结果当成参数传递给后面的命令
+ps -ef
+netstat -anp
+netstat -anp | grap 6862
+
+
+重定向
+改变数据输出的位置，方向（如 放到文件里）
+ll /opt > test
+cat test
+ll /root > test	会被覆盖
+ll /root >> test  追加
+错误的输出不会被追加
+
+ll /opt 2> test02
+cat test02
+  
+ll /opt/as >> test02 2>&1	所有信息都追加到test02 
+cat cast02
+ll /opt/aa >> test02 2>&1
+cat test02
+
+
+信息黑洞(垃圾桶)
+ll /etc/aa >> /dev/null 2>&1
+
+
+
+系统进程
+ps -ef
+ping baidu.com >> baidu
+ps -ef
+	找到 ping baidu.com 7256 父进程 7180
+	父进程  6722 sshd:root@pts/0 (ssh命令)
+	父进程  1  ...ssh -D
+	父进程  0  系统引导分区
+ps -ef | grep baidu
+
+ps -aux 	cup，内存使用率
+ps -aux --sort -pcpu
+top		当前服务器内存使用率
+
+cd /proc
+ll	进程运行过程中的一些变量
+kill -9 7256	结束7256这个进程
+
+
+后台进程
+ping baidu.com >> baidu &
+jobs
+nohup 防止后台进程被挂起
+nohup ping baidu.com >> baidu &
+
+nohup ping baidu.com >> baidu 2>&1 &
+
+
+
+环境变量	
+	作用 当我们执行一个命令时，默认从当前文件开始找，
+	如果找不到从环境变$PATH查找
+vi /etc/profile
+windows查看 此电脑-属性-高级设置-环境变量
+用户变量
+ll -a
+	.bash_profile	只对当前用户起作用
+
+echo $PATH
+
+
+
+rpm安装
+rpm -ivh jdk...
+
+查询软件
+rpm -qa | grep jdk
+rpm -q jdk
+
+测试
+java -version
+jps
+jar
+
+卸载
+rpm -e jdk...	安装好的名字
+
+放到环境变量
+whereis java
+find / -name java
+cd usr/java
+cd jdk...8.0
+ll	找到bin目录
+pwd
+copy 		/usr/java/jdk1.8.0_231-amd64
+
+vi /etc/profile
+	i	末尾+
+	export JAVA_HOME=/usr/java/jdk1.8.0_231-amd64
+	export PATH=$JAVA_HOME/bin:$PATH
+
+重新加载环境变量
+source /etc/profile
+echo $PATH
+
+出现/usr/java/jdk1.8.0_231amd64/bin:/usr/local/sbin:/usr/local/bin:
+/usr/sbin:/usr/bin:/root/bin  则配置好
+
+
+
+安装压缩软件
+tar -zxvf apa...
+mv apa... /opt/
+cd /opt/
+ll                                             
+cd apa...
+cd bin
+./startup.sh
+ps -ef | grep tomcat
+
+vi ../webapps/ROOT/index.jsp
+
+
+虚拟机异常 	该虚拟机似乎正在使用中
+找到文件目录下的basenose
+把.lck文件全部删除
+
+
+yum安装
+可以帮助我们管理rpm包 安装软件
+如果软件有依赖 会帮助我们安装依赖后再安装软件
+类似于Maven
+
+yum命令
+search 查询命令或软件
+
+yum search ifconfig
+yum info net-tolls
+yum install net-tools -y
+
+yum list 查询所有的rpm包
+yum list jdk		只查jdk
+yum list | grep jdk
+
+
+
+更换yum源
+
+下载wget
+yum install wget -y
+
+cd /etc/yum.repos.d/
+vi CentOS-Base.repo
+
+mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
+换名字 原始配置文件失效
+
+使用wget获取阿狸yum配置文件
+wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo
+
+清空以前的yum源的缓存
+yum clean all
+
+获取阿里云的缓存
+yum makecache
+
+
+安装mysql
+yum install perl net-toos -y
+卸载mariadb
+rpm -qa | grep mariadb
+rpm -e --nodeps mariadb-libs-5.5.60-1.el7_5.x86_64
+
+安装mysql
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
